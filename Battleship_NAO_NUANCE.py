@@ -299,26 +299,27 @@ class battleships:
                     print('{:>2}'.format(c),end = " ")
             print('\n')
 
-trials = 0
-naoAI = battleships()
-naoIO.say("Let's play pen and paper battleship!")
-ready = False
-while not ready:
-    naoIO.say("Please tell me when you have your grids ready")
-    ready = naoIO.listen(["ready"]) == "ready"
-naoIO.say("Alright, I will attack first")
-while True:
-    naoAI.attack()
-    if naoAI.didIWin():
-        naoIO.say("I win! Better luck next time!")
-        print('\033[91m' + "Game Over" + '\033[0m')
-        print("You lost after ",trials , "tries, better luck next time!")
-        break
-    naoIO.say("Now your turn")
-    naoAI.underAttack()
-    trials+=1
-    if naoAI.didILose():
-        naoIO.say("Good Game! Hopefully my master makes my algorithm better so that I can defeat you next time!")
-        print('\033[92m' + "You Win!" + '\033[0m')
-        print("You won after ",trials ,"tries, congratulations!")
-        break
+if __name__ == '__main__':
+    trials = 0
+    naoAI = battleships()
+    naoIO.say("Let's play pen and paper battleship!")
+    ready = False
+    while not ready:
+        naoIO.say("Please tell me when you have your grids ready")
+        ready = naoIO.listen(["ready"]) == "ready"
+    naoIO.say("Alright, I will attack first")
+    while True:
+        naoAI.attack()
+        if naoAI.didIWin():
+            naoIO.say("I win! Better luck next time!")
+            print('\033[91m' + "Game Over" + '\033[0m')
+            print("You lost after ",trials , "tries, better luck next time!")
+            break
+        naoIO.say("Now your turn")
+        naoAI.underAttack()
+        trials+=1
+        if naoAI.didILose():
+            naoIO.say("Good Game! Hopefully my master makes my algorithm better so that I can defeat you next time!")
+            print('\033[92m' + "You Win!" + '\033[0m')
+            print("You won after ",trials ,"tries, congratulations!")
+            break
